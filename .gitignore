@@ -14,5 +14,9 @@ reference/
 mybod_fitness_app_reference_pack.zip
 .tmp/
 .tools/
+android/build/
+android/assets/www/
+android/form-fitness-debug.keystore
+android/*.apk
 docs/install-qr.png
 docs/screenshots/installed-web-preview.png
