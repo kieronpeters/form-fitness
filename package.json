@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "FORM — a local-first, mobile-first personal fitness app for programming, logging, nutrition and progress.",
+  "description": "Form Fitness — a local-first, mobile-first personal fitness app for programming, logging, nutrition and progress.",
   "scripts": {
     "dev": "node scripts/run.mjs dev",
     "build": "node scripts/run.mjs build",

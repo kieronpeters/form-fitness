@@ -48,7 +48,7 @@ export function CirclePage() {
 
   const copySummary = async () => {
     const text = latest
-      ? `FORM — ${latest.name}\n${new Date(latest.completedAt ?? latest.startedAt).toLocaleDateString('en-US', {
+      ? `Form Fitness — ${latest.name}\n${new Date(latest.completedAt ?? latest.startedAt).toLocaleDateString('en-US', {
           weekday: 'short',
           month: 'short',
           day: 'numeric',
@@ -58,7 +58,7 @@ export function CirclePage() {
           .map((exercise) => `• ${exercise.sets.filter((set) => set.type !== 'warmup').length} working sets`)
           .slice(0, 6)
           .join('\n')}`
-      : 'FORM — no sessions logged yet.';
+      : 'Form Fitness — no sessions logged yet.';
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);
@@ -97,7 +97,7 @@ export function CirclePage() {
           </span>
           <h2 className="circle-title">Your data doesn’t need an audience.</h2>
           <p className="small muted">
-            There is no account, feed or global leaderboard in this build — and FORM won’t invent one. What you can do
+            There is no account, feed or global leaderboard in this build — and Form Fitness won’t invent one. What you can do
             today is train consistently, keep your record private, and share a clean summary when you choose to.
           </p>
           <div className="hero-actions">
@@ -176,7 +176,7 @@ export function CirclePage() {
             </>
           ) : (
             <p className="small muted">
-              Log a couple of sessions and FORM will set a private weekly volume challenge from your own baseline.
+              Log a couple of sessions and Form Fitness will set a private weekly volume challenge from your own baseline.
             </p>
           )}
           {latest && (
@@ -269,14 +269,14 @@ export function CirclePage() {
         <div className="stack">
           <p className="small text-2" style={{ lineHeight: 1.6 }}>
             A real leaderboard requires a server, accounts, moderation and a privacy model. Showing a mocked one would be
-            dishonest, and fake social proof is worse than no social proof. FORM’s first release focuses on the part that
+            dishonest, and fake social proof is worse than no social proof. Form Fitness’s first release focuses on the part that
             compounds: your own training record.
           </p>
           <div className="info-note">
             <Share2 />
             <span>
               For now, you can copy a clean session or weekly summary and share it wherever you already talk to people.
-              Photos never leave this device through FORM.
+              Photos never leave this device through Form Fitness.
             </span>
           </div>
           <p className="small text-2" style={{ lineHeight: 1.6 }}>

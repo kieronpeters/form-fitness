@@ -179,7 +179,7 @@ export function MorePage() {
               <CircleUserRound size={15} /> Data & backup
             </Link>
             <Link to="/learn">
-              <BookOpen size={15} /> How FORM works
+              <BookOpen size={15} /> How Form Fitness works
             </Link>
             <Link to="/workouts">
               <Dumbbell size={15} /> Start training

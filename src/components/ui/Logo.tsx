@@ -22,7 +22,7 @@ export function Brand({ compact = false }: { compact?: boolean }) {
           <path d="M150 124h232v70H230v54h128v68H230v108h-80V124z" fill="currentColor" />
         </svg>
       </span>
-      {!compact && <span className="brand-word">FORM</span>}
+      {!compact && <span className="brand-word">Form Fitness</span>}
     </span>
   );
 }

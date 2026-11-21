@@ -41,7 +41,7 @@ export const ARTICLES: Article[] = [
       {
         heading: 'Make it visible',
         paragraphs: [
-          'Log the load, reps, and a simple effort rating. FORM derives estimated one-rep maxes and personal records from those numbers so you can see whether the trend is actually moving. Chasing a chart is not the goal — it is just a clearer view of the work.',
+          'Log the load, reps, and a simple effort rating. Form Fitness derives estimated one-rep maxes and personal records from those numbers so you can see whether the trend is actually moving. Chasing a chart is not the goal — it is just a clearer view of the work.',
         ],
       },
     ],
@@ -140,7 +140,7 @@ export const ARTICLES: Article[] = [
       {
         heading: 'Rest is part of the plan',
         paragraphs: [
-          'Write rest targets into your programme so you are not negotiating with yourself mid-set. FORM starts the timer automatically when you complete a set; adjust it by 15 seconds if the session calls for something different.',
+          'Write rest targets into your programme so you are not negotiating with yourself mid-set. Form Fitness starts the timer automatically when you complete a set; adjust it by 15 seconds if the session calls for something different.',
         ],
       },
     ],
@@ -234,7 +234,7 @@ export const ARTICLES: Article[] = [
       {
         heading: 'Keep a diary you will actually use',
         paragraphs: [
-          'Logging does not need to be all-or-nothing. Track for a few days to learn portion sizes, or log only the meals that tend to drift. The food diary in FORM is designed for quick entry — search a food, choose a meal, adjust the servings, and move on.',
+          'Logging does not need to be all-or-nothing. Track for a few days to learn portion sizes, or log only the meals that tend to drift. The food diary in Form Fitness is designed for quick entry — search a food, choose a meal, adjust the servings, and move on.',
         ],
       },
     ],
@@ -328,7 +328,7 @@ export const ARTICLES: Article[] = [
       {
         heading: 'Use the data',
         paragraphs: [
-          'Look at your weekly volume, session duration and how the main lifts feel. If volume has climbed for a month while performance is flat, an easier week is probably overdue. FORM makes it easy to see that trend without a spreadsheet.',
+          'Look at your weekly volume, session duration and how the main lifts feel. If volume has climbed for a month while performance is flat, an easier week is probably overdue. Form Fitness makes it easy to see that trend without a spreadsheet.',
         ],
       },
     ],
@@ -416,7 +416,7 @@ export const ARTICLES: Article[] = [
       {
         heading: 'The first working set is part of the warm-up',
         paragraphs: [
-          'Treat the first set of your main lift as a bridge between warming up and training. It should feel crisp, not maximal. FORM lets you mark warm-up sets separately so they do not distort your volume and personal-record stats.',
+          'Treat the first set of your main lift as a bridge between warming up and training. It should feel crisp, not maximal. Form Fitness lets you mark warm-up sets separately so they do not distort your volume and personal-record stats.',
         ],
       },
     ],

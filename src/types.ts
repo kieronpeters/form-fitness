@@ -334,7 +334,7 @@ export interface NutritionTotals {
 }
 
 export interface ExportBundle {
-  app: 'form';
+  app: 'form-fitness' | 'form';
   version: 1;
   exportedAt: string;
   state: {

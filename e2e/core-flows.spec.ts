@@ -180,7 +180,7 @@ test('export a valid backup file', async ({ page }) => {
   const chunks: Buffer[] = [];
   for await (const chunk of stream) chunks.push(Buffer.from(chunk));
   const bundle = JSON.parse(Buffer.concat(chunks).toString('utf8'));
-  expect(bundle.app).toBe('form');
+  expect(bundle.app).toBe('form-fitness');
   expect(bundle.state.profile.name).toBe('Alex Rivera');
 });
 

@@ -30,7 +30,8 @@ import { generateDemoHistory } from '../lib/demo';
 import { warmupPlan } from '../lib/plates';
 import { clearPhotos, getPhoto, putPhoto, deletePhoto, cachePhotoUrl } from '../lib/photoDb';
 
-export const STORAGE_KEY = 'form-app-v1';
+export const STORAGE_KEY = 'form-fitness-app-v1';
+const LEGACY_STORAGE_KEY = 'form-app-v1';
 
 const memoryStore = new Map<string, string>();
 const fallbackStorage: Storage = {
@@ -56,6 +57,23 @@ function resolveStorage(): Storage {
   }
   return fallbackStorage;
 }
+
+function migrateLegacyStorage(): void {
+  try {
+    const storage = resolveStorage();
+    const legacy = storage.getItem(LEGACY_STORAGE_KEY);
+    if (legacy && !storage.getItem(STORAGE_KEY)) {
+      storage.setItem(STORAGE_KEY, legacy);
+    }
+    if (legacy) {
+      storage.removeItem(LEGACY_STORAGE_KEY);
+    }
+  } catch {
+    // A blocked or full storage area should not stop the app from booting.
+  }
+}
+
+migrateLegacyStorage();
 
 export interface RestTimerState {
   durationSec: number;
@@ -939,7 +957,7 @@ export const useAppStore = create<AppStore>()(
         }
         const { ...data } = state;
         return {
-          app: 'form',
+          app: 'form-fitness',
           version: 1,
           exportedAt: new Date().toISOString(),
           state: {
@@ -961,7 +979,9 @@ export const useAppStore = create<AppStore>()(
       },
 
       importBundle: async (bundle) => {
-        if (!bundle || bundle.app !== 'form') throw new Error('This is not a FORM backup file.');
+        if (!bundle || (bundle.app !== 'form-fitness' && bundle.app !== 'form')) {
+          throw new Error('This is not a Form Fitness backup file.');
+        }
         await clearPhotos();
         if (bundle.photos) {
           for (const [id, dataUrl] of Object.entries(bundle.photos)) {

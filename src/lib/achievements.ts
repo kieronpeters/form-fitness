@@ -141,7 +141,7 @@ const DEFS: Def[] = [
   {
     id: 'first-session',
     title: 'First rep',
-    description: 'Complete your first workout in FORM.',
+    description: 'Complete your first workout in Form Fitness.',
     icon: 'flag',
     tone: 'lime',
     target: 1,

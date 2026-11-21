@@ -1,5 +1,5 @@
-/* FORM service worker: cache-first for build assets, network-first for pages. */
-const CACHE = 'form-static-v1';
+/* Form Fitness service worker: cache-first for build assets, network-first for pages. */
+const CACHE = 'form-fitness-static-v1';
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(['/', '/manifest.webmanifest', '/icon.svg', '/icon-192.png', '/icon-512.png'])));

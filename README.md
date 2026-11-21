@@ -1,12 +1,12 @@
-# FORM — train with intent
+# Form Fitness — train with intent
 
-A polished, mobile-first personal fitness app built around **programming and logging workouts**. FORM is local-first: it opens with a ready-to-use profile, saves everything in the browser, and never asks you to create an account.
+A polished, mobile-first personal fitness app built around **programming and logging workouts**. Form Fitness is local-first: it opens with a ready-to-use profile, saves everything in the browser, and never asks you to create an account.
 
 The core loop is deliberate:
 
 **build a programme → place it on a repeating calendar → log the session → understand the result.**
 
-![FORM home](docs/screenshots/home.png)
+![Form Fitness home](docs/screenshots/home.png)
 
 ## What is included
 
@@ -103,13 +103,28 @@ npm run verify           # all of the above, plus build
 
 The browser suite covers: logging a workout and reloading it, progression guidance from a previous session, warm-up/plate tools, food logging and copying a day, diary check-in, goal creation, tap-to-schedule, desktop drag-and-drop, photo upload, light theme, JSON export/import, sample history/report and empty-workout validation. It also renders every screen at mobile width, verifies no horizontal overflow at 360px, runs the desktop layout, asserts there are no page/console errors, and captures the screenshots used in this README. A separate production run verifies the built bundle, PWA icons and service worker.
 
+### Android wrapper (optional)
+
+`android/` contains a small, self-contained WebView app named **Form Fitness**. It bundles the production web build inside the APK, serves it from a loopback origin so local storage and IndexedDB persist, and works offline. It is not a Play Store release; it is signed with a local debug key for sideloading.
+
+Requirements: Android SDK (build-tools + a platform), JDK, and `adb` for installation.
+
+```powershell
+# from the repository root
+.\android\build.ps1 -Install
+# or build only
+.\android\build.ps1
+```
+
+The output is `android/build/form-fitness.apk` (ignored by git). The package id remains `com.kieronpeters.form` so upgrades preserve app data; the launcher label is **Form Fitness**. External links open in the phone browser, and the photo picker supports choosing images from the gallery.
+
 ## Data and privacy
 
 | Data | Storage |
 | --- | --- |
-| Profile, programmes, sessions, schedule, food, diary, goals, settings | `localStorage` key `form-app-v1` |
+| Profile, programmes, sessions, schedule, food, diary, goals, settings | `localStorage` key `form-fitness-app-v1` (legacy `form-app-v1` is migrated automatically) |
 | Profile avatar | compressed data URL inside the profile |
-| Session photos | IndexedDB database `form-photos`, store `photos` |
+| Session photos | IndexedDB database `form-fitness-photos`, store `photos` (legacy `form-photos` is migrated automatically) |
 
 - No network calls are made for user data. There is no sync server.
 - Export a backup from **Profile → Export backup (JSON)** before clearing browser data. The export includes photo bytes.
@@ -129,6 +144,7 @@ src/
                  Calendar, Progress, Food, Diary, Goals, Learn/Article, Profile, More, Circle
   styles/        design tokens, base, components, page layouts
 e2e/             Playwright flows, responsive renders, production smoke test
+android/         optional self-contained WebView wrapper + build script
 docs/            research notes and screenshots
 ```
 
@@ -141,7 +157,7 @@ docs/            research notes and screenshots
 
 ## Seed data
 
-On first run FORM creates:
+On first run Form Fitness creates:
 
 1. A local profile (“Alex Rivera”) with goal, experience, height/weight and a five-session weekly target. No sign-in is required or available.
 2. The example five-day programme from the supplied reference image, including warm-up/rest/progression notes and the exact day structure (with “Pump”/“Chest Press (Light)” mapped to suitable library lifts).

@@ -93,7 +93,7 @@ export function AppShell() {
     <div className="app-shell" data-focus={focusMode}>
       <ScrollToTop />
       <aside className="sidebar" aria-label="Primary navigation">
-        <NavLink to="/" aria-label="FORM home">
+        <NavLink to="/" aria-label="Form Fitness home">
           <Brand />
         </NavLink>
         <nav className="sidebar-nav">
@@ -128,7 +128,7 @@ export function AppShell() {
 
       <div className="main">
         <header className="topbar">
-          <NavLink to="/" aria-label="FORM home">
+          <NavLink to="/" aria-label="Form Fitness home">
             <Brand />
           </NavLink>
           <div className="topbar-actions">

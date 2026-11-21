@@ -1,6 +1,6 @@
 # Product research notes
 
-Research date: **21 November 2026**. These notes summarise current public product pages for the reference apps, then translate the observations into decisions for FORM. This is product research, not a copy of any interface or brand.
+Research date: **21 November 2026**. These notes summarise current public product pages for the reference apps, then translate the observations into decisions for Form Fitness. This is product research, not a copy of any interface or brand.
 
 ## Sources reviewed
 
@@ -26,13 +26,13 @@ Across Hevy, Strong and Boostcamp the shared pattern is a short loop:
 - the next session's values carry forward;
 - the workout summary is immediate and legible.
 
-FORM implements this with prefilled weights/reps from the last matching session, one-tap set completion, an automatic rest timer that survives navigation, a persistent floating timer, per-exercise notes and a finish sheet that validates that at least one working set exists.
+Form Fitness implements this with prefilled weights/reps from the last matching session, one-tap set completion, an automatic rest timer that survives navigation, a persistent floating timer, per-exercise notes and a finish sheet that validates that at least one working set exists.
 
 ### 2. Programming is a first-class object
-Boostcamp's programme editor and Strong's routines both treat a programme as days → exercises → sets/reps/rest. FORM mirrors that hierarchy but keeps the editor local and direct: rename days, reorder, add/remove exercises, edit set/rep/rest targets, add notes, duplicate, schedule, delete. The library underpins the editor so every lift has muscle/equipment metadata and alternatives.
+Boostcamp's programme editor and Strong's routines both treat a programme as days → exercises → sets/reps/rest. Form Fitness mirrors that hierarchy but keeps the editor local and direct: rename days, reorder, add/remove exercises, edit set/rep/rest targets, add notes, duplicate, schedule, delete. The library underpins the editor so every lift has muscle/equipment metadata and alternatives.
 
 ### 3. Planning beats a to-do list
-Strong and Boostcamp both support scheduling routines. Most trackers make the user pick a date repeatedly. FORM adds a **repeating calendar**:
+Strong and Boostcamp both support scheduling routines. Most trackers make the user pick a date repeatedly. Form Fitness adds a **repeating calendar**:
 
 - drag a programme day onto a date on desktop;
 - tap a day then a date on touch devices;
@@ -42,7 +42,7 @@ Strong and Boostcamp both support scheduling routines. Most trackers make the us
 This was a direct response to the “survive a real week” problem in the reference brief.
 
 ### 4. Progress needs context, not just numbers
-Hevy's feature list includes muscle-group charts, sets per muscle, measurements, photos, consistency and monthly reports. FORM combines:
+Hevy's feature list includes muscle-group charts, sets per muscle, measurements, photos, consistency and monthly reports. Form Fitness combines:
 
 - volume/workout/consistency trends;
 - estimated 1RM and personal bests;
@@ -52,20 +52,20 @@ Hevy's feature list includes muscle-group charts, sets per muscle, measurements,
 - a private progress-photo journal with front / side / freeform poses.
 
 ### 5. Nutrition should be quicker than a spreadsheet
-The practical pattern is search, serving quantity, meal slot and a macro summary. FORM adds saved meals, quick-add calories, daily targets estimated from profile + goal, and a seven-day calorie strip. It deliberately avoids pretending to have a barcode database.
+The practical pattern is search, serving quantity, meal slot and a macro summary. Form Fitness adds saved meals, quick-add calories, daily targets estimated from profile + goal, and a seven-day calorie strip. It deliberately avoids pretending to have a barcode database.
 
 ### 6. Body context and recovery
-Strong tracks body measurements; Hevy tracks measurements and photos. FORM adds a lightweight check-in: weight, ten measurements, sleep, energy, soreness, mood and notes, plus a transparent readiness score. Sleep and weight trends are charted, not just stored.
+Strong tracks body measurements; Hevy tracks measurements and photos. Form Fitness adds a lightweight check-in: weight, ten measurements, sleep, energy, soreness, mood and notes, plus a transparent readiness score. Sleep and weight trends are charted, not just stored.
 
 ### 7. Social is a product decision, not a checkbox
-Hevy and Strong both have social layers; building a genuine one requires accounts, a backend, identity and moderation. FORM's first release is deliberately local-first. The Training Circle page explains the limitation honestly and offers a local “beat last week” challenge and copyable session summaries instead of fake rankings.
+Hevy and Strong both have social layers; building a genuine one requires accounts, a backend, identity and moderation. Form Fitness's first release is deliberately local-first. The Training Circle page explains the limitation honestly and offers a local “beat last week” challenge and copyable session summaries instead of fake rankings.
 
 ### 8. Dark, fast, mobile-first
-All reference apps are dark-friendly, thumb-first trackers. FORM uses a dark-first design with a real light theme, tabular numerals, 44px+ touch targets, bottom navigation on phones, a sidebar on desktop, and reduced-motion support. The active session hides the app chrome so the logging surface is the whole screen.
+All reference apps are dark-friendly, thumb-first trackers. Form Fitness uses a dark-first design with a real light theme, tabular numerals, 44px+ touch targets, bottom navigation on phones, a sidebar on desktop, and reduced-motion support. The active session hides the app chrome so the logging surface is the whole screen.
 
-## What FORM does differently
+## What Form Fitness does differently
 
-| Reference pattern | FORM interpretation |
+| Reference pattern | Form Fitness interpretation |
 | --- | --- |
 | Account-first cloud apps | Local profile, no sign-in, export/import, explicit privacy note |
 | Routine scheduler buried in settings | Calendar-first planning with drag-and-drop and repeat rules |
@@ -78,9 +78,9 @@ All reference apps are dark-friendly, thumb-first trackers. FORM uses a dark-fir
 
 The second pass focused on the “next rep” decisions that the research apps make easier:
 
-- **Progression guidance.** Boostcamp's auto-progression and Strong's simple logging both reduce the mental load of choosing a load. FORM stays manual but shows an explainable suggestion: if every working set reached the top of the programme's rep range, it proposes a specific increase (using smaller steps for dumbbells); otherwise it says how many reps remain before adding weight.
-- **Warm-up generator and plate calculator.** Strong lists a warm-up calculator and Boostcamp a plate calculator as workout tools. FORM adds a 40/60/80% warm-up ramp and a per-side plate breakdown for a standard metric or imperial bar.
-- **Faster food reuse.** Nutrition diaries are repetitive, so FORM can copy the previous day's food into the current day; this sits alongside quick-add and saved meals.
+- **Progression guidance.** Boostcamp's auto-progression and Strong's simple logging both reduce the mental load of choosing a load. Form Fitness stays manual but shows an explainable suggestion: if every working set reached the top of the programme's rep range, it proposes a specific increase (using smaller steps for dumbbells); otherwise it says how many reps remain before adding weight.
+- **Warm-up generator and plate calculator.** Strong lists a warm-up calculator and Boostcamp a plate calculator as workout tools. Form Fitness adds a 40/60/80% warm-up ramp and a per-side plate breakdown for a standard metric or imperial bar.
+- **Faster food reuse.** Nutrition diaries are repetitive, so Form Fitness can copy the previous day's food into the current day; this sits alongside quick-add and saved meals.
 - **Plain-language report insights.** Instead of only charts, the monthly report states what changed versus the previous month, where the weighted sets went, the top estimated 1RM and how many progress photos were captured.
 - **PWA-ready identity.** PNG 192/512/maskable icons and an Apple touch icon make the local-first web app installable rather than only browser-first.
 

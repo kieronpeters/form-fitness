@@ -1,9 +1,11 @@
-const DB_NAME = 'form-photos';
+const DB_NAME = 'form-fitness-photos';
+const LEGACY_DB_NAME = 'form-photos';
 const STORE_NAME = 'photos';
 const DB_VERSION = 1;
 
 const memoryFallback = new Map<string, string>();
 let dbPromise: Promise<IDBDatabase | null> | null = null;
+let migrationChecked = false;
 
 function openDb(): Promise<IDBDatabase | null> {
   if (dbPromise) return dbPromise;
@@ -20,7 +22,15 @@ function openDb(): Promise<IDBDatabase | null> {
           db.createObjectStore(STORE_NAME);
         }
       };
-      request.onsuccess = () => resolve(request.result);
+      request.onsuccess = async () => {
+        const db = request.result;
+        try {
+          await migrateLegacyPhotos(db);
+        } catch {
+          // A failed migration only means old photos stay in the old database.
+        }
+        resolve(db);
+      };
       request.onerror = () => resolve(null);
       request.onblocked = () => resolve(null);
     } catch {
@@ -28,6 +38,87 @@ function openDb(): Promise<IDBDatabase | null> {
     }
   });
   return dbPromise;
+}
+
+function countPhotos(db: IDBDatabase): Promise<number> {
+  return new Promise((resolve) => {
+    try {
+      const tx = db.transaction(STORE_NAME, 'readonly');
+      const request = tx.objectStore(STORE_NAME).count();
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => resolve(0);
+    } catch {
+      resolve(0);
+    }
+  });
+}
+
+function openLegacyDb(): Promise<IDBDatabase | null> {
+  return new Promise((resolve) => {
+    try {
+      const request = indexedDB.open(LEGACY_DB_NAME, DB_VERSION);
+      request.onupgradeneeded = () => {
+        if (!request.result.objectStoreNames.contains(STORE_NAME)) {
+          request.result.createObjectStore(STORE_NAME);
+        }
+      };
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => resolve(null);
+      request.onblocked = () => resolve(null);
+    } catch {
+      resolve(null);
+    }
+  });
+}
+
+function readLegacyPhotos(db: IDBDatabase): Promise<Array<[string, string]>> {
+  return new Promise((resolve) => {
+    try {
+      const tx = db.transaction(STORE_NAME, 'readonly');
+      const store = tx.objectStore(STORE_NAME);
+      const items: Array<[string, string]> = [];
+      const request = store.openCursor();
+      request.onsuccess = () => {
+        const cursor = request.result;
+        if (!cursor) {
+          resolve(items);
+          return;
+        }
+        if (typeof cursor.value === 'string') {
+          items.push([String(cursor.key), cursor.value]);
+        }
+        cursor.continue();
+      };
+      request.onerror = () => resolve([]);
+    } catch {
+      resolve([]);
+    }
+  });
+}
+
+async function migrateLegacyPhotos(target: IDBDatabase): Promise<void> {
+  if (migrationChecked) return;
+  migrationChecked = true;
+  const factory = indexedDB as IDBFactory & { databases?: () => Promise<Array<{ name?: string }>> };
+  if (typeof factory.databases !== 'function') return;
+  const databases = await factory.databases();
+  if (!databases.some((database) => database.name === LEGACY_DB_NAME)) return;
+  if ((await countPhotos(target)) > 0) return;
+  const legacy = await openLegacyDb();
+  if (!legacy) return;
+  const photos = await readLegacyPhotos(legacy);
+  legacy.close();
+  if (photos.length === 0) {
+    indexedDB.deleteDatabase(LEGACY_DB_NAME);
+    return;
+  }
+  const tx = target.transaction(STORE_NAME, 'readwrite');
+  const store = tx.objectStore(STORE_NAME);
+  for (const [id, value] of photos) {
+    store.put(value, id);
+  }
+  await transactionDone(tx);
+  indexedDB.deleteDatabase(LEGACY_DB_NAME);
 }
 
 function transactionDone(tx: IDBTransaction): Promise<void> {

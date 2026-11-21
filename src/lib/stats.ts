@@ -369,7 +369,7 @@ export function buildReport(
   }
 
   const summaryText = [
-    `FORM — ${label} training report`,
+    `Form Fitness — ${label} training report`,
     `${stats.workouts} workouts across ${trainingDays} training days.`,
     `${formatVolume(stats.volumeKg, units)} moved in ${Math.round(stats.durationMin / 60)} hours.`,
     `${stats.sets} working sets. Best lifts: ${prs

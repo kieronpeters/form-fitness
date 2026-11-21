@@ -268,7 +268,7 @@ export function ExerciseDetailPage() {
           <div className="info-note">
             <Target />
             <span>
-              Aim to beat your best set by a rep or a small weight increase. FORM tracks the estimated 1RM so progress is
+              Aim to beat your best set by a rep or a small weight increase. Form Fitness tracks the estimated 1RM so progress is
               visible even when reps change.
             </span>
           </div>

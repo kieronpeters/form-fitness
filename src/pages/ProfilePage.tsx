@@ -170,8 +170,8 @@ export function ProfilePage() {
     try {
       const text = await file.text();
       const parsed = JSON.parse(text) as ExportBundle;
-      if (!parsed || parsed.app !== 'form' || !parsed.state?.profile) {
-        toast('That file is not a FORM backup.', 'error');
+      if (!parsed || (parsed.app !== 'form-fitness' && parsed.app !== 'form') || !parsed.state?.profile) {
+        toast('That file is not a Form Fitness backup.', 'error');
         return;
       }
       setPendingImportName(file.name);
@@ -208,7 +208,7 @@ export function ProfilePage() {
         title="Profile & settings"
         subtitle="Your local profile. No account, no sign-in, and your data stays on this device unless you export it."
         actions={
-          <button type="button" className="icon-btn icon-btn-bordered" onClick={() => setAboutOpen(true)} aria-label="About FORM">
+          <button type="button" className="icon-btn icon-btn-bordered" onClick={() => setAboutOpen(true)} aria-label="About Form Fitness">
             <Info />
           </button>
         }
@@ -575,7 +575,7 @@ export function ProfilePage() {
                 className="segmented-inline"
               />
             </div>
-            <p className="tiny muted">FORM is designed dark-first, with a light mode for daylight.</p>
+            <p className="tiny muted">Form Fitness is designed dark-first, with a light mode for daylight.</p>
           </section>
 
           <section className="card">
@@ -641,7 +641,7 @@ export function ProfilePage() {
               <Shield size={18} className="mint" />
             </div>
             <p className="tiny muted" style={{ lineHeight: 1.55 }}>
-              Your profile, programmes and photos live in this browser (local storage and private IndexedDB). No FORM
+              Your profile, programmes and photos live in this browser (local storage and private IndexedDB). No Form Fitness
               server receives them. Export a backup before clearing browser data.
             </p>
             <div className="stack-sm mt-3">
@@ -728,7 +728,7 @@ export function ProfilePage() {
           </section>
 
           <section className="card">
-            <p className="eyebrow">About FORM</p>
+            <p className="eyebrow">About Form Fitness</p>
             <p className="small mt-2" style={{ lineHeight: 1.55 }}>
               A focused, local-first training companion. Built for the gym floor: fast set logging, honest context and
               no account between you and the first rep.
@@ -765,7 +765,7 @@ export function ProfilePage() {
           void (async () => {
             await resetToSeed();
             await clearPhotos();
-            toast('FORM reset. Fresh start.', 'success');
+            toast('Form Fitness reset. Fresh start.', 'success');
             navigate('/');
           })();
         }}
@@ -775,7 +775,7 @@ export function ProfilePage() {
         open={demoOpen}
         onClose={() => setDemoOpen(false)}
         title="Add sample history?"
-        message="FORM will add five weeks of completed workouts and body check-ins, tagged as sample data, so you can explore charts, reports and streaks. Your existing data stays. Remove them any time from this page."
+        message="Form Fitness will add five weeks of completed workouts and body check-ins, tagged as sample data, so you can explore charts, reports and streaks. Your existing data stays. Remove them any time from this page."
         confirmLabel="Add sample history"
         onConfirm={() => {
           loadDemoHistory();
@@ -818,7 +818,7 @@ export function ProfilePage() {
         }}
       />
 
-      <Sheet open={aboutOpen} onClose={() => setAboutOpen(false)} title="About FORM" subtitle="Version 1.0 · local-first preview">
+      <Sheet open={aboutOpen} onClose={() => setAboutOpen(false)} title="About Form Fitness" subtitle="Version 1.0 · local-first preview">
         <div className="about-sheet">
           <span className="brand-mark" style={{ width: 44, height: 44, borderRadius: 14 }}>
             <svg viewBox="0 0 512 512" width={26} height={26} aria-hidden="true">
@@ -827,7 +827,7 @@ export function ProfilePage() {
           </span>
           <p className="strong">Train with intent.</p>
           <p className="small muted">
-            FORM is a complete first release built around programming and logging. It runs entirely in your browser and
+            Form Fitness is a complete first release built around programming and logging. It runs entirely in your browser and
             persists locally. There is no online account, feed or leaderboard in this build — and no fake social proof.
           </p>
           <div className="about-list">
